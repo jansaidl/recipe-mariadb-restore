@@ -1,0 +1,6 @@
+services:
+  - hostname: mariadbrestore
+    type: "ubuntu@22.04"
+    verticalAutoscaling:
+      minRam: 2
+    maxContainers: 1

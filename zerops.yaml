@@ -1,12 +1,14 @@
 zerops:
   - setup: mariadbrestore
     build:
+      buildCommands:
+        - chmod +x backup.sh
       deployFiles:
-        - run.sh
+        - backup.sh
       addToRunPrepare:
         - init.sh
         - mariadb.sources
     run:
-      base: go@latest
+      base: ubuntu@22.04
       prepareCommands:
         - sudo bash ./init.sh

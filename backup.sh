@@ -89,6 +89,7 @@ cleanup() {
         sudo kill -9 $MARIADB_PID 2>/dev/null || true
         wait $MARIADB_PID 2>/dev/null || true
     fi
+    sleep 5
     rm -rf "$BACKUP_DIR"
     rm -f "$SOCKET"
 }
@@ -105,7 +106,7 @@ mariabackup --prepare --target-dir="$BACKUP_DIR"
 
 echo ""
 echo "=== Starting temporary MariaDB instance ==="
-sudo mariadbd --datadir="$BACKUP_DIR" --skip-grant-tables --user=mysql --socket="$SOCKET" --port="$PORT" &
+sudo mariadbd --datadir="$BACKUP_DIR" --log-bin --skip-grant-tables --user=root --socket="$SOCKET" --port="$PORT" --pid-file=/var/www/mariadbd-restore.pid &
 MARIADB_PID=$!
 
 echo "Waiting for MariaDB to start..."

@@ -8,4 +8,4 @@ curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_relea
 
 cp mariadb.sources  /etc/apt/sources.list.d/mariadb.sources
 apt update
-apt install mariadb-server mariadb-backup
+apt install -y mariadb-server mariadb-backup
