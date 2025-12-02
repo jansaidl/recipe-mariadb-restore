@@ -1,0 +1,12 @@
+zerops:
+  - setup: mariadbrestore
+    build:
+      deployFiles:
+        - run.sh
+      addToRunPrepare:
+        - init.sh
+        - mariadb.sources
+    run:
+      base: go@latest
+      prepareCommands:
+        - sudo bash ./init.sh
